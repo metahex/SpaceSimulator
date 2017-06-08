@@ -2,7 +2,7 @@ package com.emre.space.objects;
 
 import android.graphics.Point;
 
-public class Planete {
+public class Planet {
     public Point acceleration = new Point();
     public long densite;
     public Point force = new Point();

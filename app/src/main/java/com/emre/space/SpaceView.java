@@ -97,10 +97,10 @@ public class SpaceView extends SurfaceView implements Callback {
                     deltaY = (double) Math.abs(event.getY() - ((float) this.positionFin.y));
                     double distance = Math.sqrt((deltaX * deltaX) + (deltaY * deltaY));
                     if (System.currentTimeMillis() - this.downTime.longValue() > 700 && distance < 5.0d) {
-                        this.spaceThread.addPlanete_(event.getX(), event.getY());
+                        this.spaceThread.addplanet_(event.getX(), event.getY());
                         break;
                     }
-                   spaceThread.setDoigtLeve(this.positionDebut, this.positionFin);
+                   spaceThread.createAsteroid(this.positionDebut, this.positionFin);
                    break;
                 }
                 this.originalScale = this.lastScaled;

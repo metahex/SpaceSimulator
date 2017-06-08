@@ -17,8 +17,8 @@ public class SpaceThread extends Thread {
     private boolean disableCollision = false;
     private int idSatelliteSuivi = 0;
     Drawable imgAstro1;
-    Drawable imgPlanete;
-  	Drawable imgPlaneter;
+    Drawable imgplanet;
+  	Drawable imgplanetr;
 	Drawable imgBlackHole;
     Paint ligneNewPaint;
     private Bitmap mBackgroundImage;
@@ -30,9 +30,9 @@ public class SpaceThread extends Thread {
     boolean mRun = false;
     SurfaceHolder mSurfaceHolder;
     Paint nbrPlanPaint;
-    int nbrPlanetes = 4;
+    int nbrplanets = 4;
     Paint pEntoureSiZomm;
-    Planete[] planetes = new Planete[MaxSatellites];
+    Planet[] planets = new Planet[MaxSatellites];
     private Point pointDebutNew;
     private Point pointFinNew;
     private Satellite satAjouter = null;
@@ -51,8 +51,8 @@ public class SpaceThread extends Thread {
         this.mHandler = handler;
         Resources res = context.getResources();
 		pM = new PreferencesManager(context);
-        this.imgPlanete = res.getDrawable(R.drawable.planete2_);
-        this.imgPlaneter = res.getDrawable(R.drawable.planete2r);
+        this.imgplanet = res.getDrawable(R.drawable.planete2_);
+        this.imgplanetr = res.getDrawable(R.drawable.planete2r);
         this.imgAstro1 = res.getDrawable(R.drawable.aste1);
 		this.imgBlackHole = res.getDrawable(R.drawable.blackhole);
         this.backGrounfPaint = new Paint();
@@ -76,18 +76,18 @@ public class SpaceThread extends Thread {
         double d;
         synchronized (this.mSurfaceHolder) {
             this.scale = (double) deltaDist;
-            if (this.scale >= 0.91d) {
-                this.scale = 0.9d;
+            if (this.scale >= 1.91d) {
+                this.scale = 2.9d;
             }
-            if (this.scale < -6.0d) {
-                this.scale = -6.0d;
+            if (this.scale < -14.0d) {
+                this.scale = -14.0d;
             }
             d = this.scale;
         }
         return d;
     }
 
-    public void addPlanete_(float x, float y) {
+    public void addplanet_(float x, float y) {
         synchronized (mSurfaceHolder) {
             double cameraX = 0.0d;
             double cameraY = 0.0d;
@@ -97,26 +97,28 @@ public class SpaceThread extends Thread {
             }
             float posX = (float) ((((double) ((float) (((double) x) - cameraX))) - ((this.scale * ((double) this.mCanvasWidth)) / 2.0d)) / (1.0d - this.scale));
             float posY = (float) ((((double) ((float) (((double) y) - cameraY))) - ((this.scale * ((double) this.mCanvasHeight)) / 2.0d)) / (1.0d - this.scale));
-            Planete p = new Planete();
+            Planet p = new Planet();
 			
 			if(pM.getPref(pM.BLACK_HOLE)){
 				p.masse = 20000000;
-			}
-
-			if(pM.getPref(pM.NM)){
-				p.masse = -150000;
-			}else if (!pM.getPref(pM.NM)){
-            	p.masse = 150000;
-			}
+                p.rayon = 16;
+            }else {
+                p.rayon = 12;
+                if (pM.getPref(pM.NM)) {
+                    p.masse = -150000;
+                }
+                if (!pM.getPref(pM.NM)) {
+                    p.masse = 150000;
+                }
+            }
 
             p.densite = 10;
-            p.rayon = 12;
             p.position.x = (int) posX;
             p.position.y = (int) posY;
-            Planete[] planeteArr = planetes;
-            int i = nbrPlanetes;
-            nbrPlanetes = i + 1;
-            planeteArr[i] = p;
+            Planet[] planetArr = planets;
+            int i = nbrplanets;
+            nbrplanets = i + 1;
+            planetArr[i] = p;
         }
     }
 	
@@ -168,7 +170,7 @@ public class SpaceThread extends Thread {
 
     public void init() {
         synchronized (this.mSurfaceHolder) {
-            this.nbrPlanetes = 0;
+            this.nbrplanets = 0;
             this.satellites.clear();
             Satellite sat = new Satellite();
             sat.masse = 350;
@@ -189,7 +191,7 @@ public class SpaceThread extends Thread {
 
 	/*
 	public void addP(){
-		Planete unePlan = new Planete();
+		planet unePlan = new planet();
 		Random generator = new Random(); 
 		int rN = generator.nextInt(20) + 1;
 		unePlan.position.x = this.mCanvasWidth / 2+rN*20;
@@ -208,10 +210,10 @@ public class SpaceThread extends Thread {
 		unePlan.densite = 10;
 		unePlan.rayon = 13;
 		//	unePlan.velocite = 0.03d;
-		Planete[] planeteArr = this.planetes;
-		int i = this.nbrPlanetes;
-		this.nbrPlanetes = i + 1;
-		planeteArr[i] = unePlan;
+		planet[] planetArr = this.planets;
+		int i = this.nbrplanets;
+		this.nbrplanets = i + 1;
+		planetArr[i] = unePlan;
 	}
 	*/
 
@@ -226,25 +228,25 @@ public class SpaceThread extends Thread {
             cameraY = ((double) (this.mCanvasHeight / 2)) - ((Satellite) this.satellites.get(this.idSatelliteSuivi - 1)).positionY;
         }
         canvas.drawBitmap(this.mBackgroundImage, 0.0f, 0.0f, null);
-        for (int z = 0; z < this.nbrPlanetes; z++) {
-            Planete planete = this.planetes[z];
-            float posX = (float) (((double) planete.position.x) + cameraX);
-            float posY = (float) (((double) planete.position.y) + cameraY);
+        for (int z = 0; z < this.nbrplanets; z++) {
+            Planet planet = this.planets[z];
+            float posX = (float) (((double) planet.position.x) + cameraX);
+            float posY = (float) (((double) planet.position.y) + cameraY);
             posX = (float) (((double) posX) + (((double) (((float) (this.mCanvasWidth / 2)) - posX)) * this.scale));
             posY = (float) (((double) posY) + (((double) (((float) (this.mCanvasHeight / 2)) - posY)) * this.scale));
-            float rayon = (float) Math.abs(((double) planete.rayon) * (3.0d - this.scale));
+            float rayon = (float) Math.abs(((double) planet.rayon) * (3.0d - this.scale));
 
-            if (planete.masse > 0) {
-                if (planete.masse>20000000){
+            if (planet.masse > 0) {
+                if (planet.masse>=20000000){
                     imgBlackHole.setBounds((int) (posX - rayon), (int) (posY - rayon), (int) (rayon + posX), (int) (rayon + posY));
                     imgBlackHole.draw(canvas);
                 } else {
-                    imgPlanete.setBounds((int) (posX - rayon), (int) (posY - rayon), (int) (rayon + posX), (int) (rayon + posY));
-                    imgPlanete.draw(canvas);
+                    imgplanet.setBounds((int) (posX - rayon), (int) (posY - rayon), (int) (rayon + posX), (int) (rayon + posY));
+                    imgplanet.draw(canvas);
                 }
             } else {
-                imgPlaneter.setBounds((int) (posX - rayon), (int) (posY - rayon), (int) (rayon + posX), (int) (rayon + posY));
-                imgPlaneter.draw(canvas);
+                imgplanetr.setBounds((int) (posX - rayon), (int) (posY - rayon), (int) (rayon + posX), (int) (rayon + posY));
+                imgplanetr.draw(canvas);
             }
 			
             if (this.scale >= 0.7d) {
@@ -277,9 +279,9 @@ public class SpaceThread extends Thread {
     }
 
     public void doPhysics() {
-        if (this.satAjouter != null) {
-            this.satellites.add(this.satAjouter);
-            this.satAjouter = null;
+        if (satAjouter != null) {
+            satellites.add(this.satAjouter);
+            satAjouter = null;
         }
         long now = System.currentTimeMillis();
         if (this.mLastTime <= now) {
@@ -293,8 +295,8 @@ public class SpaceThread extends Thread {
             double force;
             double elapsed = (double) (now - this.mLastTime);
             int nbrSats = this.satellites.size();
-            for (int k = 0; k < this.nbrPlanetes; k++) {
-                Planete p = this.planetes[k];
+            for (int k = 0; k < this.nbrplanets; k++) {
+                Planet p = this.planets[k];
                 for (i = 0; i < nbrSats; i++) {
                     s = (Satellite) this.satellites.get(i);
                     distX = s.positionX - ((double) p.position.x);
@@ -306,9 +308,9 @@ public class SpaceThread extends Thread {
                         force = ((double) ((G * ((float) p.masse)) * ((float) s.masse))) / distanceSquared;
                         s.forceX -= force * (distX / distance);
                         s.forceY -= force * normalDistY;
-                    } else if (!this.disableCollision) {
-                        if (s.masse > 10000) {
-                            this.nbrPlanetes--;
+                    } else if (!disableCollision) {
+                        if (s.masse > 100000) {
+                            nbrplanets--;
                         }
                       
                         if (i + 1 == this.idSatelliteSuivi) {
@@ -326,9 +328,9 @@ public class SpaceThread extends Thread {
                         s.forceY -= force * normalDistY;
                     }
                     if (s.positionX < -1000.0d || s.positionX > ((double) (this.mCanvasWidth + 1000)) || s.positionY < -1000.0d || s.positionY > ((double) (this.mCanvasHeight + 1000))) {
-                        this.satellites.remove(i);
-                        if (i + 1 < this.idSatelliteSuivi) {
-                            this.idSatelliteSuivi--;
+                        satellites.remove(i);
+                        if (i + 1 < idSatelliteSuivi) {
+                            idSatelliteSuivi--;
                         }
                         nbrSats--;
                     }
@@ -396,11 +398,11 @@ public class SpaceThread extends Thread {
                 s3.positionY += s3.velociteY * elapsed;
                 s3.setNewPos(new Point((int) Math.round(s3.positionX), (int) Math.round(s3.positionY)));
             }
-            this.mLastTime = now;
+            mLastTime = now;
         }
     }
 
-    public void setDoigtLeve(Point origine, Point fin) {
+    public void createAsteroid(Point origine, Point fin) {
         synchronized (this.mSurfaceHolder) {
             if (this.idSatelliteSuivi > this.satellites.size() || this.idSatelliteSuivi < 0) {
                 this.idSatelliteSuivi = 0;
@@ -415,9 +417,11 @@ public class SpaceThread extends Thread {
             }
             int deltaX = fin.x - origine.x;
             int deltaY = fin.y - origine.y;
+            Random generator = new Random();
+            int rN = generator.nextInt(5) + 1;
             Satellite s = new Satellite();
             s.masse = 3500;
-            s.rayon = 2;
+            s.rayon = rN;
             s.densite = 100;
             float posY = (float) ((((double) ((float) (((double) origine.y) - cameraY))) - ((this.scale * ((double) this.mCanvasHeight)) / 2.0d)) / (1.0d - this.scale));
             s.positionX = (double) ((float) ((((double) ((float) (((double) origine.x) - cameraX))) - ((this.scale * ((double) this.mCanvasWidth)) / 2.0d)) / (1.0d - this.scale)));
@@ -457,8 +461,8 @@ public class SpaceThread extends Thread {
     }
 
     public void setCanvasSize(int width, int height) {
-        this.mCanvasHeight = height;
-        this.mCanvasWidth = width;
+        this.mCanvasHeight = height+360;
+        this.mCanvasWidth = width+360;
         init();
     }
 

@@ -18,8 +18,43 @@
 		android:text="Black hole"
 		android:layout_marginTop="40dp"
 		android:layout_marginLeft="10dp"/>
-	
-	
+
+
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<Button
+			android:id="@+id/Button01"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignBaseline="@+id/Button02"
+			android:layout_alignBottom="@+id/Button02"
+			android:layout_marginEnd="25dp"
+			android:layout_marginRight="25dp"
+			android:layout_toLeftOf="@+id/Button02"
+            android:visibility="invisible"
+            android:layout_toStartOf="@+id/Button02"
+			android:background="@color/colorPrimaryDark"
+			android:text="a" />
+
+		<Button
+			android:id="@+id/Button02"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentEnd="true"
+			android:layout_alignParentRight="true"
+			android:layout_marginBottom="14dp"
+			android:layout_marginEnd="15dp"
+			android:layout_marginRight="15dp"
+            android:visibility="invisible"
+			android:background="@color/colorPrimaryDark"
+			android:text="." />
+
+	</RelativeLayout>
+
 	<LinearLayout
 		android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
 		android:orientation="horizontal"
@@ -37,21 +72,9 @@
 			android:layout_marginLeft="10dp"/>
 
 		
-		<Button
-			android:id="@+id/Button01"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:visibility="invisible"
-			android:text="a"/>
-
-		<Button
-			android:id="@+id/Button02"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="."
-			android:visibility="invisible"/>
 
 	</LinearLayout>
+
 
 </FrameLayout>
 

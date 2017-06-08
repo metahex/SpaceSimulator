@@ -5,6 +5,7 @@ import android.os.*;
 import android.widget.*;
 
 public class SimulatorActivity extends Activity {
+
     static final int MENU_NEW_GAME = 1;
     private SpaceView spaceView;
 	private Switch nMS , sBH;

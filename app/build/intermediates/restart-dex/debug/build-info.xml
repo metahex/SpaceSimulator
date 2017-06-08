@@ -6,37 +6,30 @@
     density="xxhdpi"
     format="10"
     plugin-version="2.3.2"
-    timestamp="1496908316958"
+    timestamp="1496918261016"
     token="-4046115882209360779"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="109" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="15" />
+        duration="0" />
     <task
         name="verifier"
         duration="0" />
 
-    <artifact
-        location="C:\Users\nilufer.subasi\Documents\SpaceSimulator\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
-        type="SPLIT" />
-
     <build
         build-mode="FULL"
-        timestamp="1496906563116"
+        timestamp="1496916514526"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="C:\Users\nilufer.subasi\Documents\SpaceSimulator\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
-        <artifact
-            location="C:\Users\nilufer.subasi\Documents\SpaceSimulator\app\build\outputs\apk\app-debug.apk"
-            type="SPLIT_MAIN" />
         <artifact
             location="C:\Users\nilufer.subasi\Documents\SpaceSimulator\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
             type="SPLIT" />
@@ -64,14 +57,21 @@
         <artifact
             location="C:\Users\nilufer.subasi\Documents\SpaceSimulator\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
+        <artifact
+            location="C:\Users\nilufer.subasi\Documents\SpaceSimulator\app\build\outputs\apk\app-debug.apk"
+            type="SPLIT_MAIN" />
     </build>
     <build
         build-mode="COLD"
-        timestamp="1496908316958"
+        timestamp="1496918112273"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\nilufer.subasi\Documents\SpaceSimulator\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
     </build>
+    <build
+        build-mode="COLD"
+        timestamp="1496918261016"
+        verifier="COLD_SWAP_REQUESTED" />
 
 </instant-run>

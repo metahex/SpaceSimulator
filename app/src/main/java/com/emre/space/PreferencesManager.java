@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 
-class PreferencesManager {
+public class PreferencesManager {
 
     Context context;
 
