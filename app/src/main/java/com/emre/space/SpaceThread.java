@@ -20,7 +20,6 @@ public class SpaceThread extends Thread {
     Drawable imgPlanete;
   	Drawable imgPlaneter;
 	Drawable imgBlackHole;
-    private boolean inverseNewPLanteGrav = false;
     Paint ligneNewPaint;
     private Bitmap mBackgroundImage;
     private int mCanvasHeight;
@@ -89,7 +88,7 @@ public class SpaceThread extends Thread {
     }
 
     public void addPlanete_(float x, float y) {
-        synchronized (this.mSurfaceHolder) {
+        synchronized (mSurfaceHolder) {
             double cameraX = 0.0d;
             double cameraY = 0.0d;
             if (idSatelliteSuivi != 0) {
@@ -114,8 +113,8 @@ public class SpaceThread extends Thread {
             p.rayon = 12;
             p.position.x = (int) posX;
             p.position.y = (int) posY;
-            Planete[] planeteArr = this.planetes;
-            int i = this.nbrPlanetes;
+            Planete[] planeteArr = planetes;
+            int i = nbrPlanetes;
             nbrPlanetes = i + 1;
             planeteArr[i] = p;
         }
@@ -456,8 +455,7 @@ public class SpaceThread extends Thread {
             this.satAjouter = s;
         }
     }
-	
-	
+
     public void setCanvasSize(int width, int height) {
         this.mCanvasHeight = height;
         this.mCanvasWidth = width;

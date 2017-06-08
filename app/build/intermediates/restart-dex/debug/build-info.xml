@@ -6,19 +6,19 @@
     density="xxhdpi"
     format="10"
     plugin-version="2.3.2"
-    timestamp="1496907713780"
+    timestamp="1496908316958"
     token="-4046115882209360779"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="125" />
+        duration="109" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="15" />
     <task
         name="verifier"
         duration="0" />
@@ -67,7 +67,7 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1496907713780"
+        timestamp="1496908316958"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\nilufer.subasi\Documents\SpaceSimulator\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
