@@ -1,0 +1,7 @@
+#Thu Jun 08 10:22:48 EEST 2017
+base.0=C\:\\Users\\nilufer.subasi\\Documents\\SpaceSimulator\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_2807a54738556c4883bbece2252215eabbdc739d
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=C\:\\Users\\nilufer.subasi\\Documents\\SpaceSimulator\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_ba0aad541cfb1f232ce3b4a8d5b826d5ee4ed73d\\classes.dex
+base.1=C\:\\Users\\nilufer.subasi\\Documents\\SpaceSimulator\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_ba0aad541cfb1f232ce3b4a8d5b826d5ee4ed73d
+file.0=C\:\\Users\\nilufer.subasi\\Documents\\SpaceSimulator\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_2807a54738556c4883bbece2252215eabbdc739d\\classes.dex
