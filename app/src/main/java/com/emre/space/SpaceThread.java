@@ -100,19 +100,19 @@ public class SpaceThread extends Thread {
             Planet p = new Planet();
 			
 			if(pM.getPref(pM.BLACK_HOLE)){
-				p.masse = 20000000;
-                p.rayon = 16;
+				p.mass = 20000000;
+                p.radius = 16;
             }else {
-                p.rayon = 12;
+                p.radius = 12;
                 if (pM.getPref(pM.NM)) {
-                    p.masse = -150000;
+                    p.mass = -150000;
                 }
                 if (!pM.getPref(pM.NM)) {
-                    p.masse = 150000;
+                    p.mass = 150000;
                 }
             }
 
-            p.densite = 10;
+            p.density = 10;
             p.position.x = (int) posX;
             p.position.y = (int) posY;
             Planet[] planetArr = planets;
@@ -234,10 +234,10 @@ public class SpaceThread extends Thread {
             float posY = (float) (((double) planet.position.y) + cameraY);
             posX = (float) (((double) posX) + (((double) (((float) (this.mCanvasWidth / 2)) - posX)) * this.scale));
             posY = (float) (((double) posY) + (((double) (((float) (this.mCanvasHeight / 2)) - posY)) * this.scale));
-            float rayon = (float) Math.abs(((double) planet.rayon) * (3.0d - this.scale));
+            float rayon = (float) Math.abs(((double) planet.radius) * (3.0d - this.scale));
 
-            if (planet.masse > 0) {
-                if (planet.masse>=20000000){
+            if (planet.mass > 0) {
+                if (planet.mass>=20000000){
                     imgBlackHole.setBounds((int) (posX - rayon), (int) (posY - rayon), (int) (rayon + posX), (int) (rayon + posY));
                     imgBlackHole.draw(canvas);
                 } else {
@@ -250,7 +250,6 @@ public class SpaceThread extends Thread {
             }
 			
             if (this.scale >= 0.7d) {
-             //   Rect rect = new Rect((int) ((posX - rayon) - 5.0f), (int) ((posY - rayon) - 5.0f), (int) ((5.0f + rayon) + posX), (int) ((5.0f + rayon) + posY));
                 canvas.drawCircle(posX, posY, 13.0f, pEntoureSiZomm);
             }
         }
@@ -303,9 +302,9 @@ public class SpaceThread extends Thread {
                     distY = s.positionY - ((double) p.position.y);
                     distanceSquared = (distX * distX) + (distY * distY);
                     distance = Math.sqrt(distanceSquared);
-                    if (1.0d + distance > ((double) (p.rayon + s.rayon))) {
+                    if (1.0d + distance > ((double) (p.radius + s.rayon))) {
                         normalDistY = distY / distance;
-                        force = ((double) ((G * ((float) p.masse)) * ((float) s.masse))) / distanceSquared;
+                        force = ((double) ((G * ((float) p.mass)) * ((float) s.masse))) / distanceSquared;
                         s.forceX -= force * (distX / distance);
                         s.forceY -= force * normalDistY;
                     } else if (!disableCollision) {
@@ -323,7 +322,7 @@ public class SpaceThread extends Thread {
                         nbrSats--;
                     } else if (distance > 4.0d) {
                         normalDistY = distY / distance;
-                        force = ((double) ((G * ((float) p.masse)) * ((float) s.masse))) / distanceSquared;
+                        force = ((double) ((G * ((float) p.mass)) * ((float) s.masse))) / distanceSquared;
                         s.forceX -= force * (distX / distance);
                         s.forceY -= force * normalDistY;
                     }

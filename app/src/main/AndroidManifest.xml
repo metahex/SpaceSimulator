@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2" android:versionName="1.1" package="com.emre.space">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.emre.space">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application 
 		android:label="@string/app_name"
-		android:icon="@drawable/ic_launcher" 
-		android:debuggable="false">
+		android:icon="@mipmap/ic_launcher">
         <activity android:label="@string/app_name"
 			android:name=".SimulatorActivity"
 			android:screenOrientation="portrait">
@@ -12,7 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
-    
-    <uses-sdk android:minSdkVersion="5" />
 </manifest>

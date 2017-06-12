@@ -3,9 +3,15 @@ package com.emre.space;
 import android.app.*;
 import android.os.*;
 import android.widget.*;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 public class SimulatorActivity extends Activity {
 
+    static String ID = "ca-app-pub-5942424100141990/2430621067";
+
+    private InterstitialAd mInterstitialAd;
     static final int MENU_NEW_GAME = 1;
     private SpaceView spaceView;
 	private Switch nMS , sBH;
@@ -67,6 +73,29 @@ public class SimulatorActivity extends Activity {
             }
         });
 		*/
+
+        this.mInterstitialAd = new InterstitialAd(this);
+        this.mInterstitialAd.setAdUnitId(ID);
+        this.mInterstitialAd.setAdListener(new AdListener() {
+            public void onAdClosed() {
+                mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice("4b5d467c88b7bd63").addTestDevice("04157df47a383a0c").build());
+            }
+        });
+        showAdWhenLoaded(0);
+        mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice("4b5d467c88b7bd63").addTestDevice("04157df47a383a0c").build());
+
+    }
+
+    private void showAdWhenLoaded(int extraDelay) {
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                } else {
+                    showAdWhenLoaded(0);
+                }
+            }
+        }, (long) (extraDelay + 400));
     }
 
     public void terminate() {

@@ -4,10 +4,10 @@ import android.graphics.Point;
 
 public class Planet {
     public Point acceleration = new Point();
-    public long densite;
+    public long density;
     public Point force = new Point();
-    public long masse;
+    public long mass;
     public Point position = new Point();
-    public long rayon;
-    public Point velocite = new Point();
+    public long radius;
+    public Point velocity = new Point();
 }
