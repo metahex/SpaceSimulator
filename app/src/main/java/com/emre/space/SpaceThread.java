@@ -269,7 +269,7 @@ public class SpaceThread extends Thread {
                 canvas.drawPoint((float) (((double) posX) + (((double) (((float) (this.mCanvasWidth / 2)) - posX)) * this.scale)), (float) (((double) posY) + (((double) (((float) (this.mCanvasHeight / 2)) - posY)) * this.scale)), this.satellitePaint);
             }
         }
-        if (this.pointDebutNew != null) {
+        if (pointDebutNew != null) {
             canvas.drawLine((float) this.pointDebutNew.x, (float) this.pointDebutNew.y, (float) this.pointFinNew.x, (float) this.pointFinNew.y, ligneNewPaint);
         }
 		
